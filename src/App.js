@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { fetchUserData } from './server';
+import { calculatePoints } from './utils';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	const [userData, setUserData] = useState({})
+
+	useEffect(() => {
+		return async () => {
+			await fetchUserData().then(res => setUserData(res.data))
+		}
+	})
+
+	const renderUserData = (data) => {
+		return data.map(user => {
+			return (
+				<tr>
+					<td>{user.name}</td>
+					<td>{user.totalSpent}</td>
+					<td>{calculatePoints(user.totalSpent)}</td>
+				</tr>
+			)
+		})
+	}
+
+	return (
+		<div className="App">
+			<table>
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Total Spent</td>
+						<td>Points</td>
+					</tr>
+				</thead>
+				<tbody>
+					{renderUserData(userData)}
+				</tbody>
+			</table>
+		</div>
+	);
 }
 
 export default App;

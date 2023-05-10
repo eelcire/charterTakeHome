@@ -1,0 +1,24 @@
+{
+	"data": [
+		{
+			"name": "Penny",
+			"totalSpent": 94
+		},
+		{
+			"name": "Palmer",
+			"totalSpent": 184
+		},
+		{
+			"name": "Steven",
+			"totalSpent": 100
+		},
+		{
+			"name": "Michelle",
+			"totalSpent": 200
+		},
+		{
+			"name": "Erik",
+			"totalSpent": 47
+		}
+	]
+}
